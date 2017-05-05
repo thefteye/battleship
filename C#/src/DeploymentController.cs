@@ -35,6 +35,9 @@ static class DeploymentController
 
 	private const int TEXT_OFFSET = 5;
 	private static Direction _currentDirection = Direction.UpDown;
+	
+	private const int BACK_BUTTON_LEFT = 603;
+	private const int BACK_BUTTON_WIDTH = 80;
 
 	private static ShipName _selectedShip = ShipName.Tug;
 	/// <summary>
@@ -79,7 +82,9 @@ static class DeploymentController
 				_currentDirection = Direction.LeftRight;
 			} else if (UtilityFunctions.IsMouseInRectangle(RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
 				GameController.HumanPlayer.RandomizeDeployment();
-			}
+			} else if (UtilityFunctions.IsMouseInRectangle(BACK_BUTTON_LEFT, TOP_BUTTONS_TOP, BACK_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
+				GameController.AddNewState(GameState.ViewingMainMenu);
+			}	
 		}
 	}
 
@@ -160,6 +165,7 @@ static class DeploymentController
 		}
 
 		SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
+		SwinGame.DrawBitmap(GameResources.GameImage("BackButton"), BACK_BUTTON_LEFT, TOP_BUTTONS_TOP);
 
 		UtilityFunctions.DrawMessage();
 	}
