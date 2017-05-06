@@ -13,15 +13,14 @@ public class Player : IEnumerable<Ship>
 {
 
 	protected static Random _Random = new Random();
-	private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>();
-	private SeaGrid _playerGrid;
-	private ISeaGrid _enemyGrid;
+	private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>(); //Ship of player
+	private SeaGrid _playerGrid; //Player grid
+	private ISeaGrid _enemyGrid; //Enemy grid
 
-	protected BattleShipsGame _game;
-	private int _shots;
-	private int _hits;
-
-	private int _misses;
+	protected BattleShipsGame _game; //Battleship game
+	private int _shots; //Shots that player made
+	private int _hits; //Hit that player has taken
+	private int _misses; //misses that player makes
 	/// <summary>
 	/// Returns the game that the player is part of.
 	/// </summary>
@@ -40,6 +39,9 @@ public class Player : IEnumerable<Ship>
 		set { _enemyGrid = value; }
 	}
 
+	/// <summary>
+	/// add ship name so seagrid know to randomize deployment
+	/// </summary>
 	public Player(BattleShipsGame controller)
 	{
 		_game = controller;
@@ -77,6 +79,9 @@ public class Player : IEnumerable<Ship>
 		get { return _playerGrid.AllDeployed; }
 	}
 
+	/// <summary>
+	/// IsDestroyed returns true if all ships are destroyed
+	/// </summary>
 	public bool IsDestroyed {
 //Check if all ships are destroyed... -1 for the none ship
 		get { return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1; }
@@ -106,7 +111,12 @@ public class Player : IEnumerable<Ship>
 	public int Shots {
 		get { return _shots; }
 	}
-
+    
+	/// <summary>
+	/// The number of hits the player has made
+	/// </summary>
+	/// <value>Hits taken</value>
+	/// <returns>the number of hits taken</returns>
 	public int Hits {
 		get { return _hits; }
 	}
@@ -120,6 +130,11 @@ public class Player : IEnumerable<Ship>
 		get { return _misses; }
 	}
 
+	/// <summary>
+	/// Total scores depend on destroyed ships
+	/// </summary>
+	/// <value>hits and ships killed</value>
+	/// <returns>scores</returns>
 	public int Score {
 		get {
 			if (IsDestroyed) {
@@ -144,6 +159,11 @@ public class Player : IEnumerable<Ship>
 
 		return lst.GetEnumerator();
 	}
+    
+    /// <summary>
+	/// get the enumeration of ships
+	/// </summary>
+	/// <returns>A Ship enumerator</returns>
 	IEnumerator<Ship> IEnumerable<Ship>.GetEnumerator()
 	{
 		return GetShipEnumerator();
@@ -197,7 +217,10 @@ public class Player : IEnumerable<Ship>
 
 		return result;
 	}
-
+    
+	/// <summary>
+	/// Generate random ship deployment on the board
+	/// </summary>
 	public virtual void RandomizeDeployment()
 	{
 		bool placementSuccessful = false;

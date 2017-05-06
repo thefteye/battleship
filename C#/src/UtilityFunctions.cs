@@ -251,17 +251,25 @@ static class UtilityFunctions
 		SwinGame.DrawFramerate(675, 585, GameResources.GameFont("CourierSmall"));
 	}
 
+	/// <summary>
+	/// Add animation when hit the ship
+	/// </summary>
 	public static void AddExplosion(int row, int col)
 	{
 		AddAnimation(row, col, "Splash");
 	}
 
+	/// <summary>
+	/// Add animation when miss
+	/// </summary>
 	public static void AddSplash(int row, int col)
 	{
 		AddAnimation(row, col, "Splash");
 	}
 
-
+	/// <summary>
+	/// Load and add animation
+	/// </summary>
 	private static List<Sprite> _Animations = new List<Sprite>();
 	private static void AddAnimation(int row, int col, string image)
 	{
@@ -282,6 +290,9 @@ static class UtilityFunctions
 		_Animations.Add(s);
 	}
 
+	/// <summary>
+	/// Update animation to the game
+	/// </summary>    
 	public static void UpdateAnimations()
 	{
 		List<Sprite> ended = new List<Sprite>();
@@ -298,6 +309,9 @@ static class UtilityFunctions
 		}
 	}
 
+	/// <summary>
+	/// Draw animation to the game
+	/// </summary>   
 	public static void DrawAnimations()
 	{
 		foreach (Sprite s in _Animations) {

@@ -15,9 +15,9 @@ using System.Diagnostics;
 /// </remarks>
 public class SeaGrid : ISeaGrid
 {
-
+    //Width of sea grid
 	private const int _WIDTH = 10;
-
+    //Height of sea grid
 	private const int _HEIGHT = 10;
 	private Tile[,] _GameTiles;
 	private Dictionary<ShipName, Ship> _Ships;
@@ -125,7 +125,8 @@ public class SeaGrid : ISeaGrid
 			int currentCol = col;
 			int dRow = 0;
 			int dCol = 0;
-
+            
+            //ship direction left or right
 			if (direction == Direction.LeftRight) {
 				dRow = 0;
 				dCol = 1;
@@ -136,6 +137,8 @@ public class SeaGrid : ISeaGrid
 
 			//place ship's tiles in array and into ship object
 			int i = 0;
+            
+            //check ship if ship fris the board or not
 			for (i = 0; i <= size - 1; i++) {
 				if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height) {
 					throw new InvalidOperationException("Ship can't fit on the board");

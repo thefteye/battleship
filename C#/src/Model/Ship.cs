@@ -14,12 +14,12 @@ using System.Diagnostics;
 /// </remarks>
 public class Ship
 {
-	private ShipName _shipName;
-	private int _sizeOfShip;
-	private int _hitsTaken = 0;
-	private List<Tile> _tiles;
-	private int _row;
-	private int _col;
+	private ShipName _shipName; //Ship name
+	private int _sizeOfShip; //size of ship
+	private int _hitsTaken = 0; //hits that ship has taken
+	private List<Tile> _tiles; //tile to deploy a ship
+	private int _row; //row to deploy ship
+	private int _col; //col to deploy ship
 
 	private Direction _direction;
 	/// <summary>
@@ -65,14 +65,27 @@ public class Ship
 		get { return _row; }
 	}
 
+    /// <summary>
+	/// The column location of the ship
+	/// </summary>
+	/// <value>The topmost location of the ship</value>
+	/// <returns>the column of the ship</returns>
 	public int Column {
 		get { return _col; }
 	}
-
+    
+    /// <summary>
+	/// The direction of the ship
+	/// </summary>
+	/// <value>The topmost location of the ship</value>
+	/// <returns>the direction of the ship</returns>
 	public Direction Direction {
 		get { return _direction; }
 	}
 
+    /// <summary>
+	/// The tile to add the ship from ship size
+	/// </summary>
 	public Ship(ShipName ship)
 	{
 		_shipName = ship;
@@ -102,6 +115,9 @@ public class Ship
 		_tiles.Clear();
 	}
 
+	/// <summary>
+	/// Return all hits that ship has taken
+	/// </summary>
 	public void Hit()
 	{
 		_hitsTaken = _hitsTaken + 1;
@@ -115,6 +131,9 @@ public class Ship
 		get { return _tiles.Count > 0; }
 	}
 
+	/// <summary>
+	/// Return true if a ship is destroyed
+	/// </summary>
 	public bool IsDestroyed {
 		get { return Hits == Size; }
 	}

@@ -6,6 +6,11 @@ using System.Collections.Generic;
 //using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
+/// <summary>
+/// The GameResources is responsible for loading game required resources.
+/// This includes all the sound files, music files, font types, background images, explosion images,
+/// deployment images (like Up, Down, Left, Right arrows for orientation) and ship images as well as playing the SwinGame intro music and cutscreen.
+/// </summary>
 static class GameLogic
 {
 	public static void Main()
