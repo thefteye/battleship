@@ -27,7 +27,7 @@ static class DeploymentController
 	private const int UP_DOWN_BUTTON_LEFT = 410;
 
 	private const int LEFT_RIGHT_BUTTON_LEFT = 350;
-	private const int RANDOM_BUTTON_LEFT = 547;
+	private const int RANDOM_BUTTON_LEFT = 473;
 
 	private const int RANDOM_BUTTON_WIDTH = 51;
 
@@ -36,8 +36,11 @@ static class DeploymentController
 	private const int TEXT_OFFSET = 5;
 	private static Direction _currentDirection = Direction.UpDown;
 	
-	private const int BACK_BUTTON_LEFT = 603;
+	private const int BACK_BUTTON_LEFT = 610;
 	private const int BACK_BUTTON_WIDTH = 80;
+	
+	private const int MENU_BUTTON_LEFT = 527;
+	private const int MENU_BUTTON_WIDTH = 80;
 
 	private static ShipName _selectedShip = ShipName.Tug;
 	/// <summary>
@@ -84,10 +87,11 @@ static class DeploymentController
 				GameController.HumanPlayer.RandomizeDeployment();
 			} else if (UtilityFunctions.IsMouseInRectangle(BACK_BUTTON_LEFT, TOP_BUTTONS_TOP, BACK_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
 				GameController.AddNewState(GameState.ViewingMainMenu);
-			}	
+			}	else if (UtilityFunctions.IsMouseInRectangle(MENU_BUTTON_LEFT, TOP_BUTTONS_TOP, MENU_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
+				GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 	}
-
+}
 	/// <summary>
 	/// The user has clicked somewhere on the screen, check if its is a deployment and deploy
 	/// the current ship if that is the case.
@@ -166,6 +170,7 @@ static class DeploymentController
 
 		SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
 		SwinGame.DrawBitmap(GameResources.GameImage("BackButton"), BACK_BUTTON_LEFT, TOP_BUTTONS_TOP);
+        SwinGame.DrawBitmap(GameResources.GameImage("MenuButton"), MENU_BUTTON_LEFT, TOP_BUTTONS_TOP);
 
 		UtilityFunctions.DrawMessage();
 	}
