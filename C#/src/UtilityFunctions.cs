@@ -231,6 +231,7 @@ static class UtilityFunctions
 	{
 		switch (GameController.CurrentState) {
 			case GameState.ViewingMainMenu:
+			case GameState.ViewingHelpMenu:
 			case GameState.ViewingGameMenu:
 			case GameState.AlteringSettings:
 			case GameState.ViewingHighScores:
